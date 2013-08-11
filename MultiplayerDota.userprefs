@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Sprites\PlayerControll.cs">
+    <Files>
+      <File FileName="Assets\Sprites\MyJoystickEvent.cs" Line="43" Column="26" />
+      <File FileName="Assets\Sprites\CameraControll.cs" Line="15" Column="49" />
+      <File FileName="Assets\Sprites\PlayerControll.cs" Line="22" Column="3" />
+      <File FileName="Assets\EasyTouch\Plugins\MovingJoystick.cs" Line="17" Column="17" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
