@@ -1,0 +1,45 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{8C6F2029-5B4D-10CB-C559-83E99CB3D2EB}") = "mulitplayerDota", "Assembly-CSharp-vs.csproj", "{68A92375-EF50-FD56-1920-A57F1E65D9D5}"
+EndProject
+Project("{8C6F2029-5B4D-10CB-C559-83E99CB3D2EB}") = "mulitplayerDota", "Assembly-CSharp-Editor-vs.csproj", "{8A2980E9-7867-3741-DC24-DD834CA401BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68A92375-EF50-FD56-1920-A57F1E65D9D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68A92375-EF50-FD56-1920-A57F1E65D9D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68A92375-EF50-FD56-1920-A57F1E65D9D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68A92375-EF50-FD56-1920-A57F1E65D9D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A2980E9-7867-3741-DC24-DD834CA401BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A2980E9-7867-3741-DC24-DD834CA401BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A2980E9-7867-3741-DC24-DD834CA401BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A2980E9-7867-3741-DC24-DD834CA401BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+						GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = null
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+		$0.TextStylePolicy = $3
+		$3.FileWidth = 120
+		$3.TabWidth = 4
+		$3.EolMarker = Unix
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/plain
+		$3.scope = text/plain
+	EndGlobalSection
+
+EndGlobal
