@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-using SimpleJSON;
 
 public enum InputType{
 	None,
@@ -19,96 +18,17 @@ public class GameView : MonoBehaviour
 	
 	
 	
-	public int VCInput_Axis;
-	public int VCInput_BtnA;
-	public int VCInput_BtnB;
-//	public GameObject gobjHero;
-	GUIText uiScore;
-	
-	
-	public double timeLastClick;
-	public Vector3 posLastTouch;
 	
 	private InputType inputType = InputType.None;
 	
 	public Hero hero;
 	
-//	public Hero[] vsHeros;
-	
-	public CameraControll mCameraControll;
-	
-	public SonicCameraControll mSonicCameraCon;
-	
-	public Dictionary<string, Hero> dicVsHeros;
-	
-	public int score;
-	
-	
-	public static int timeCost;
-	public static int levelScore;
-	public double levelStartTime;
-	public double levelEndTime;
-	
-	bool isLevelStart = false; 
+	private Vector3 posLastTouch;
 	
 	public Camera cameraMain;
-	public Camera camera2D;
 	
-	public UFO ufo;
-	
-	
-	public UIPanel uiPanel;
-	
-	// cash
-	public UILabel g_Lab_CashVal;
-	
-	
-	// distance
-	public UILabel g_Lab_Distance;
-	
-	
-	public GameObject g_GObj_Pause_Window;
-	public GameObject g_GObj_Score_Window;
-	
-	public int distance = 0;
-	
-	
-	// road order
-	private int curRoadIndex = 0;
-	
-	public GameObject[] gobjRoadOrder;
-	public int[] indexRoadOrder;
-	
-	public GameObject curRoadGobj;
-	
-	
-	// speedup distance
-	public int[] speedupDistances;
-	
-//	public BNTest bnTest;
-	
-	public int gameStartFrameCount;
-	
-	public GameObject g_GobjPreHpAddAnim;
-	
-	private AudioManager audioManager;
-	
-	public float[] ufoWarnDiss; 
-	
-	public GameObject ufoWarnIcon;
-	public UILabel labelUfoWarnDis;
-	public UISprite spriteUfoWarn;
-	
-	
-	public Color[] skyColors;
-	private int skyColorIndex = 0;
-	
-	public AudioListener audioListener;
-	
-	public GameObject gobjMask;
-	
-	public GameObject gobjPrefbCash2d;
-	
+	public GameObject joystick;
+		
 	void Awake(){
 		
 	}
@@ -126,27 +46,27 @@ public class GameView : MonoBehaviour
 	{
 			
 		// gesture controll
-		if(Input.GetMouseButtonDown(0)){
-			posLastTouch = cameraMain.ScreenToViewportPoint(Input.mousePosition);
-		}
-		if(Input.GetMouseButtonUp(0)){
-			Vector2 touchOffst = cameraMain.ScreenToViewportPoint(Input.mousePosition) - posLastTouch;
-			float x = touchOffst.x;
-			float y = touchOffst.y;
-			if(Mathf.Abs(x) > Mathf.Abs(y)){
-				if(x > 0){
-					SetCurInput(InputType.SlideRight);
-				}else if(x < 0){
-					SetCurInput(InputType.SlideLeft);
-				}
-			}else{
-				if(y > 0){
-					SetCurInput(InputType.SlideUp);
-				}else if(y < 0){
-					SetCurInput(InputType.SlideDown);
-				}
-			}
-		}
+//		if(Input.GetMouseButtonDown(0)){
+//			posLastTouch = cameraMain.ScreenToViewportPoint(Input.mousePosition);
+//		}
+//		if(Input.GetMouseButtonUp(0)){
+//			Vector2 touchOffst = cameraMain.ScreenToViewportPoint(Input.mousePosition) - posLastTouch;
+//			float x = touchOffst.x;
+//			float y = touchOffst.y;
+//			if(Mathf.Abs(x) > Mathf.Abs(y)){
+//				if(x > 0){
+//					SetCurInput(InputType.SlideRight);
+//				}else if(x < 0){
+//					SetCurInput(InputType.SlideLeft);
+//				}
+//			}else{
+//				if(y > 0){
+//					SetCurInput(InputType.SlideUp);
+//				}else if(y < 0){
+//					SetCurInput(InputType.SlideDown);
+//				}
+//			}
+//		}
 			
 	}	
 	
@@ -168,19 +88,34 @@ public class GameView : MonoBehaviour
 	
 	public void ResetInput(){
 		SetCurInput(InputType.None);
+	}	
+	
+	void OnEnable(){
+		EasyJoystick.On_JoystickMove += On_JoystickMove;
+		EasyJoystick.On_JoystickMoveEnd += On_JoystickMoveEnd;
 	}
 	
-//	public void HurtHero(Hero hero){
-//		if(!hero.IsInLifeState(LifeState.HurtInvincible) && !hero.IsInLifeState(LifeState.Invincible)){
-//			ReduceHeroHp();
-//			// slow for 0.5s
-//			hero.Slow();
-//			// invin for 1.5s
-//			hero.Invincible_Hurt();	
-//		}
-//	}
+	void OnDisable(){
+		EasyJoystick.On_JoystickMove -= On_JoystickMove	;
+		EasyJoystick.On_JoystickMoveEnd -= On_JoystickMoveEnd;
+	}
+		
+	void OnDestroy(){
+		EasyJoystick.On_JoystickMove -= On_JoystickMove;	
+		EasyJoystick.On_JoystickMoveEnd -= On_JoystickMoveEnd;
+	}
 	
+	
+	void On_JoystickMoveEnd(MovingJoystick move){
 
+	}
+	void On_JoystickMove( MovingJoystick move){
+		
+		if (move.joystickName == joystick.name){
+			hero.TurnControll(move.joystickAxis);
+		}
+	}
+	
 	
 	public void Pause(){
 		Time.timeScale = 0;	
@@ -204,6 +139,13 @@ public class GameView : MonoBehaviour
 	public IEnumerator CoEffectTime(GameObject gobjEff, float durTime){
 		yield return new WaitForSeconds(durTime);
 		DestroyObject(gobjEff);
+	}
+	
+	
+	public void OnBtnClick(string btnName){
+		if("BtnFire".Equals(btnName)){
+			hero.Fire();
+		}
 	}
 	
 }
