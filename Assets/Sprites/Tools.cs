@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using SimpleJSON;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -290,12 +289,12 @@ public static class Tools{
 	}
 	
 	public static void SetUILabelText(GameObject gobj, string text){
-		if(gobj != null){
-			UILabel label = gobj.GetComponent<UILabel>();
-			if(label != null){
-				label.text = text;
-			}
-		}
+//		if(gobj != null){
+//			UILabel label = gobj.GetComponent<UILabel>();
+//			if(label != null){
+//				label.text = text;
+//			}
+//		}
 	}
 	
 	public static string FormatTimeText(int seconds){
@@ -321,24 +320,24 @@ public static class Tools{
 	}
 	
 	public static void SceneFadeInOut(GameObject gobjMask, bool isFadeIn, float dur){
-		if(gobjMask != null){
-			TweenAlpha ta = gobjMask.GetComponent<TweenAlpha>();
-			if(ta != null){
-				if(isFadeIn){
-					ta.from = 1;
-					ta.to = 0;
-					ta.duration = dur;
-					ta.Reset();
-					ta.Play(true);
-				}else{
-					ta.from = 0;
-					ta.to = 1;
-					ta.duration = dur;
-					ta.Reset();
-					ta.Play(true);
-				}
-			}
-		}
+//		if(gobjMask != null){
+//			TweenAlpha ta = gobjMask.GetComponent<TweenAlpha>();
+//			if(ta != null){
+//				if(isFadeIn){
+//					ta.from = 1;
+//					ta.to = 0;
+//					ta.duration = dur;
+//					ta.Reset();
+//					ta.Play(true);
+//				}else{
+//					ta.from = 0;
+//					ta.to = 1;
+//					ta.duration = dur;
+//					ta.Reset();
+//					ta.Play(true);
+//				}
+//			}
+//		}
 	}
 	
 	public static void SetUIPosBy3DGameObj(GameObject gobj2d, GameObject gobj3d, Camera camer3d, Camera camera2d){
