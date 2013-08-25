@@ -209,6 +209,7 @@
      <Compile Include="Assets\Sprites\IActor.cs" />
      <Compile Include="Assets\Sprites\IGame.cs" />
      <Compile Include="Assets\Sprites\NGUIBtnHandler.cs" />
+     <Compile Include="Assets\Sprites\NetWorkTest\NetworkTest.cs" />
      <Compile Include="Assets\Sprites\PlayerControll.cs" />
      <Compile Include="Assets\Sprites\Tools.cs" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />

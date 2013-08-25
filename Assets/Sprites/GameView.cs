@@ -112,7 +112,7 @@ public class GameView : MonoBehaviour
 	void On_JoystickMove( MovingJoystick move){
 		
 		if (move.joystickName == joystick.name){
-			hero.TurnControll(move.joystickAxis);
+			hero.MoveInputActionHandler(move.joystickAxis);
 		}
 	}
 	

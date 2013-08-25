@@ -18,10 +18,16 @@ public class Hero : IActor
 	public PlayerAction curControllAction;
 	public GameObject gobjPrefabBullet;
 	
+	public float speed;
+	private CharacterController cc;
+	
+	private Vector3 curDirection;
+	
 	void Start(){
 		// default state
 //		state = new HeroActorState_Idle(this);
-
+		cc = GetComponent<CharacterController>();
+		curDirection = new Vector3(0, 0, 1);
 	}
 	
 	void Update(){
@@ -57,19 +63,27 @@ public class Hero : IActor
 		this.curControllAction = action;
 	}
 	
-	public void TurnControll(Vector2 axis){
+	public void MoveInputActionHandler(Vector2 axis){
 //		float angle = Vector2.Angle(Vector2.right, axis);
 //		transform.eulerAngles = 
-		Vector3 lookTarget = new Vector3(axis.x, 0, axis.y) + transform.position;
+		
+		Vector3 direct = new Vector3(axis.x, 0, axis.y);
+		
+		curDirection = direct;
+		
+		Vector3 lookTarget = direct + transform.position;
 		transform.LookAt(lookTarget);
+		
+		cc.Move(direct * speed * Time.deltaTime);
 	}
 	
 	
 	public void Fire(){
 		GameObject gobjBullet = Instantiate(gobjPrefabBullet) as  GameObject;
-		gobjBullet.transform.position = transform.position;
+		gobjBullet.transform.position = transform.position + curDirection * 2.5f;
 		gobjBullet.transform.eulerAngles = new Vector3(90f, transform.eulerAngles.y, 0);
 		Bullet bullet = gobjBullet.GetComponent<Bullet>();
 		bullet.speed = 30f;
+		bullet.ownerGboj = gameObject;
 	}
 }
